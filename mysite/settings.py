@@ -45,7 +45,11 @@ INSTALLED_APPS = (
     'blog',
 )
 
+<<<<<<< HEAD
 MIDDLEWARE_CLASSES = [
+=======
+MIDDLEWARE_CLASES = [
+>>>>>>> 2a6396daaf7208b7209689e548331f6cc833f8d2
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
