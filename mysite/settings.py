@@ -25,7 +25,7 @@ SECRET_KEY = '$e@l%y3aelj1*5wr5degqvm0a$7(7)onnoxe3=4ufw$a2y^l0h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['moni99.pythonanywhere.com']
+ALLOWED_HOSTS = []
 
 SILENCED_SYSTEM_CHECKS = [
     'admin.E408',
@@ -106,5 +106,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_ROOT = '/home/moni99/my-first-blog/static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = '/home/moni99/my-first-blog/static'
