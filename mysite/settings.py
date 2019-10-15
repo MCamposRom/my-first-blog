@@ -25,7 +25,7 @@ SECRET_KEY = '$e@l%y3aelj1*5wr5degqvm0a$7(7)onnoxe3=4ufw$a2y^l0h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['monica99.pythonanywhere.com']
+ALLOWED_HOSTS = ['mcamposrom.pythonanywhere.com']
 
 SILENCED_SYSTEM_CHECKS = [
     'admin.E408',
@@ -45,7 +45,7 @@ INSTALLED_APPS = (
     'blog',
 )
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -106,7 +106,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-#STATIC_ROOT = '/home/moni99/my-first-blog/static'
+#STATIC_ROOT = '/home/mcamposrom/my-first-blog/static'
+
+MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
