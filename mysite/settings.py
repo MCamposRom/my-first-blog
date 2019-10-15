@@ -25,7 +25,7 @@ SECRET_KEY = '$e@l%y3aelj1*5wr5degqvm0a$7(7)onnoxe3=4ufw$a2y^l0h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://moni99.pythonanywhere.com/']
+ALLOWED_HOSTS = ['moni99.pythonanywhere.com/']
 
 SILENCED_SYSTEM_CHECKS = [
     'admin.E408',
