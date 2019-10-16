@@ -6,3 +6,6 @@ myvenv
 db.sqlite3
 /static
 .DS_Store
+
+#el archivo settings del ordenador y de pythonanywhere cambia, luego haré que github lo ignore
+/mysite/settings.py
