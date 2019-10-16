@@ -25,7 +25,7 @@ SECRET_KEY = '$e@l%y3aelj1*5wr5degqvm0a$7(7)onnoxe3=4ufw$a2y^l0h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mcamposrom.pythonanywhere.com']
+ALLOWED_HOSTS = ['mcamposrom.pythonanywhere.com','127.0.0.1']
 
 SILENCED_SYSTEM_CHECKS = [
     'admin.E408',
@@ -109,9 +109,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #STATIC_ROOT = '/home/mcamposrom/my-first-blog/static'
 
 MEDIA_URL = '/media/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-MEDIA_URL = '/media/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
