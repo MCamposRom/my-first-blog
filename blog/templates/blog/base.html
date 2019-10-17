@@ -10,10 +10,11 @@
     </head>
     <body>
     <div class="page-header">
-        <h1><a href="/">Django Girls Blog</a></h1>
         {% if user.is_authenticated %}
             <a href="{% url 'blog:post-new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+            <a href="{% url 'blog:post-draft-list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
         {% endif %}
+        <h1><a href="/">Django Girls Blog</a></h1>
     </div>
     <div class="content container">
         <div class="row">
