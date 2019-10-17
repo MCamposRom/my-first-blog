@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['mcamposrom.pythonanywhere.com','127.0.0.1']
 
+LOGIN_REDIRECT_URL = '/'
+
 SILENCED_SYSTEM_CHECKS = [
     'admin.E408',
     'admin.E409',

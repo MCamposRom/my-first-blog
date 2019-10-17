@@ -25,6 +25,11 @@ body {
     font-size:36pt;
     text-decoration: none;  
 }
+.page-header h1 p {        
+    color: #ffffff;
+    font-size:5pt;
+    text-decoration: none;  
+}
 .content{
     margin-left:40px;    
 }
