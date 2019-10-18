@@ -3,7 +3,7 @@
 {% block content %}
     <div class="post_detail">
         {% if user.is_authenticated %}
-            <a class="btn btn-default" href="{% url 'blog:post-remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+            <a class="btn btn-default" href="{% url 'blog:post-remove' pk=post.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
             <a class="btn btn-default" href="{% url 'blog:post-edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"><span></a>
         {% endif %}
         {% if not post.published_date %}

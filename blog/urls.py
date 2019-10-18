@@ -18,5 +18,5 @@ urlpatterns = [
     path('comment/<pk>/approve/', views.comment_approve, name='comment-approve'),
     #url(r'^comment/(?P<pk>\d+)/remove/$', views.comment_remove, name='comment-remove'),
     path('comment/<pk>/remove/', views.comment_remove, name='comment-remove'),
-
+    path('register', views.register, name='register'),
 ]

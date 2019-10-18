@@ -3,6 +3,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login as do_login
 
 # Create your views here.
 
@@ -83,3 +85,17 @@ def comment_remove(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.delete()
     return redirect('blog:post-detail', pk=comment.post.pk)
+
+def register(request):
+    form = UserCreationForm()
+    form.fields['username'].help_text = None
+    form.fields['password1'].help_text = None
+    form.fields['password2'].help_text = None
+    if request.method == "POST":
+        form = UserCreationForm(data=request.POST)
+        if form.is_valid():
+            user = form.save()
+            if user is not None:
+                do_login(request, user)
+                return redirect('/')
+    return render(request, "registration/register.html", {'form': form})
