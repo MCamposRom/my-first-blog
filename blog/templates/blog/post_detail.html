@@ -16,6 +16,10 @@
         {% endif %}
         <h1>{{ post.title }}</h1>
         <p>{{ post.text|linebreaksbr }}</p>
+        <br><br>
+        <div class="post-author">
+            Autor: {{ post.author }}
+        </div>
     </div>
     <hr>
         {% if user.is_authenticated %}

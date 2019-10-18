@@ -1,7 +1,3 @@
-h1 a {
-    color : #FCA205;
-    font-family : 'Avantgarde', TeX Gyre Adventor, URW Gothic L, sans-serif;
-}
 body {
     padding-left:15px;
     background-color: #d2f1f7;
@@ -40,6 +36,11 @@ h1, h2, h3, h4{
 .date{
     float: right;
     color:#828282;
+}
+.post-author{
+    float: right;
+    color:#828282;
+    font-size:17px;
 }
 .save{
     float: right;
