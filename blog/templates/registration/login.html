@@ -7,7 +7,7 @@
 
     <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
-        <h2>User Login</h2>
+        <h2>Iniciar sesión</h2>
         <br>
         <table>
         <tr>
@@ -20,7 +20,7 @@
         </tr>
         </table>
         <br>
-        <input type="submit" value="login" />
+        <input type="submit" value="Iniciar sesión" />
         <input type="hidden" name="next" value="{{ next }}" />
         <a href="/register"><input type="submit" value="Registrarse"></input></a>
     </form>

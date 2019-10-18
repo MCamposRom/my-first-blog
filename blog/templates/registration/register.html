@@ -7,7 +7,7 @@
         {{ form.as_p }}
         {% csrf_token %}
         <button type="submit">Registrar</button>
-        <a href="/login"><input type="submit" value="Iniciar sesión"></input></a>
+        <a href="{% url 'login' %}"><input type="submit" value="Iniciar sesión"></input></a>
     </form>
     <hr />
 {% endblock %}
