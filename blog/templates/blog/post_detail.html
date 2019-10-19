@@ -24,7 +24,7 @@
         <p>{{ post.text|linebreaksbr }}</p>
         <br><br>
         <div class="post-author">
-            Autor: {{ post.author }}
+            Autor: <a href="{% url 'blog:user' u=post.author %}">{{ post.author }}</a>
         </div>
     </div>
     <hr>
@@ -32,7 +32,7 @@
         {% for comment in post.comments.all %}
             {% if user.is_authenticated or comment_.approved_comment %}
             <div class="comment">
-                <strong>{{ comment.author }}</strong><br>
+                <strong><a href="{% url 'blog:user' u=comment.author %}">{{ comment.author }}</strong><br>
                 <div class="comment-date">
                     {{ comment.created_date }}
                 </div>

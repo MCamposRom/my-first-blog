@@ -2,15 +2,14 @@
 
 {% block content %}
     <dev class='user'>
-        <h1>Perfil {{ user.username }}</h1>
+        <h1>Perfil {{ usuario.username }}</h1>
         {% if usuario == user %}
+            Recuerde que solo usted puede ver sus post borradores.
             <dev class='save' >
                 <a class="btn btn-default" href="{% url 'blog:post-save-list' %}">Ver posts guardados <span class="glyphicon glyphicon-bookmark"></span></a>
             </dev><br>
-            <h2> Mis posts </h2>
-        {% else %}
-            <h2> Sus post </h2>
         {% endif %}
+        <h2>Posts</h2>
         {% for post in posts %}
             <div class="post-user">
                 <div class="date">

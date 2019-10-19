@@ -58,7 +58,8 @@ def post_draft_list(request):
     posts=[]
     post_list = Post.objects.filter(published_date__isnull=True).order_by('-created_date')
     for post in post_list:
-        if post.author== request.user.username:
+        print(post.author)
+        if post.author.username == request.user.username:
             posts.append(post)
     return render(request, 'blog/post_draft_list.html', {'posts': posts})
 
@@ -137,7 +138,10 @@ def register(request):
 
 def user(request, u):
     usuario = get_object_or_404(User, username=u)
-    posts = Post.objects.filter(author=usuario).filter(published_date__lte=timezone.now()).order_by('-published_date')
+    if usuario==request.user:
+        posts = Post.objects.filter(author=usuario).order_by('-published_date')
+    else:
+        posts = Post.objects.filter(author=usuario).filter(published_date__lte=timezone.now()).order_by('-published_date')
     return render(request, "user/user.html", {'posts': posts, 'usuario':usuario})
 
 @login_required
