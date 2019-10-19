@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="post-detail">
-        {% if user.is_authenticated %}
+        {% if user == post.author %}
             <a class="btn btn-default" href="{% url 'blog:post-remove' pk=post.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
             <a class="btn btn-default" href="{% url 'blog:post-edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"><span></a>
         {% endif %}
@@ -22,25 +22,29 @@
         </div>
     </div>
     <hr>
-        {% if user.is_authenticated %}
-            <a class="btn btn-default" href="{% url 'blog:add-comment-to-post' pk=post.pk %}">Add comment</a>
-        {% else %}
-            <a class="btn btn-default" href="{% url 'login' %}">Add comment</a>
-        {% endif %}
+        <h2>Comentarios</h2>
         {% for comment in post.comments.all %}
             {% if user.is_authenticated or comment_.approved_comment %}
             <div class="comment">
-                <div class="date">
+                <strong>{{ comment.author }}</strong><br>
+                <div class="comment-date">
                     {{ comment.created_date }}
-                    {% if user.username == comment.author %}
+                </div>
+                <div class="comment-icon">
+                    {% if user.username == comment.author or user == post.author %}
                         <a class="btn btn-default" href="{% url 'blog:comment-remove' pk=comment.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
                     {% endif %}
-                </div>
-                <strong>Cometario de: {{ comment.author }}</strong>
+                </div><br>
                 <p>{{ comment.text|linebreaks }}</p>
             </div>
             {% endif %}
         {% empty %}
             <p>No comments here yet :(</p>
-{% endfor %}
+    {% endfor %}<br>
+    {% if user.is_authenticated %}
+        <a class="btn btn-default" href="{% url 'blog:add-comment-to-post' pk=post.pk %}">Add comment</a>
+    {% else %}
+        <a class="btn btn-default" href="{% url 'login' %}">Add comment</a>
+    {% endif %}
+    <br><br>
 {% endblock %}

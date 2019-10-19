@@ -68,7 +68,7 @@ def add_comment_to_post(request, pk):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = post
-            comment.auth = request.user.username
+            comment.author = request.user.username
             comment.approve()
             comment.save()
             return redirect('blog:post-detail', pk=post.pk)

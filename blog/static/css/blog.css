@@ -42,6 +42,13 @@ h1, h2, h3, h4{
     float: right;
     color:#828282;
 }
+.comment-date{
+    float: left;
+    color:#A8A8A8;
+}
+.comment-icon{
+    float: right;
+}
 .post-author{
     float: right;
     color:#828282;
