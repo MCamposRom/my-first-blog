@@ -7,7 +7,7 @@
             <a class="btn btn-default" href="{% url 'blog:post-edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"><span></a>
         {% endif %}
         {% if not post.published_date %}
-            <a class="btn btn-default" href="{% url 'blog:post-publish' pk=post.pk %}">Publish</a>            
+            <a class="btn btn-default" href="{% url 'blog:post-publish' pk=post.pk %}">Publicar</a>            
         {% else %}
             <br><br>
             <div class="date">
@@ -42,9 +42,9 @@
             <p>No comments here yet :(</p>
     {% endfor %}<br>
     {% if user.is_authenticated %}
-        <a class="btn btn-default" href="{% url 'blog:add-comment-to-post' pk=post.pk %}">Add comment</a>
+        <a class="btn btn-default" href="{% url 'blog:add-comment-to-post' pk=post.pk %}">Añadir comentario</a>
     {% else %}
-        <a class="btn btn-default" href="{% url 'login' %}">Add comment</a>
+        <a class="btn btn-default" href="{% url 'login' %}">Añadir comentario</a>
     {% endif %}
     <br><br>
 {% endblock %}
