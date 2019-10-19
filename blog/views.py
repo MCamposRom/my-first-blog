@@ -10,14 +10,17 @@ from django.contrib.auth import login as do_login
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    return render(request, 'blog/post_list.html', {'posts': posts})
+    saves = SavePost.objects.all()
+    return render(request, 'blog/post_list.html', {'posts': posts, 'saves' : saves})
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    return render(request, 'blog/post_detail.html', {'post': post})
+    saves = SavePost.objects.all()
+    return render(request, 'blog/post_detail.html', {'post': post, 'saves' : saves})
 
 @login_required
 def post_new(request):
+    saves = SavePost.objects.all()
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
@@ -31,6 +34,7 @@ def post_new(request):
 
 @login_required
 def post_edit(request, pk):
+    saves = SavePost.objects.all()
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
@@ -51,6 +55,7 @@ def post_draft_list(request):
 
 @login_required
 def post_publish(request, pk):
+    saves = SavePost.objects.all()
     post = get_object_or_404(Post, pk=pk)
     post.publish()
     return redirect('blog:post-detail', pk=pk)
@@ -66,7 +71,7 @@ def post_save(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.save = SavePost.objects.create(save_post=post, save_user=request.user.username)
     saves = SavePost.objects.all()
-    return render(request, 'blog/post_detail.html', {'post': post}, {'saves':saves})
+    return render(request, 'blog/post_detail.html', {'post': post, 'saves':saves})
 
 @login_required
 def post_save_list(request):
@@ -74,7 +79,14 @@ def post_save_list(request):
     return render(request, 'blog/post_save_list.html', {'posts': save_posts})
 
 @login_required
+def save_remove(request, pk):
+    save_post = get_object_or_404(SavePost, pk=pk)
+    save_post.delete()
+    return redirect('blog:post-save-list')
+
+@login_required
 def add_comment_to_post(request, pk):
+    saves = SavePost.objects.all()
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         form = CommentForm(request.POST)
@@ -91,6 +103,7 @@ def add_comment_to_post(request, pk):
 
 @login_required
 def comment_remove(request, pk):
+    saves = SavePost.objects.all()
     comment = get_object_or_404(Comment, pk=pk)
     comment.delete()
     return redirect('blog:post-detail', pk=comment.post.pk)

@@ -6,6 +6,9 @@
     </div>
     {% for post in posts %}
         <div class="post">
+            <div class="save">
+                <a class="btn btn-default" href="{% url 'blog:save-remove' pk=post.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
+            </div><br><br>
             <div class="date">
                 {{ post.save_post.published_date }}
             </div>
@@ -17,5 +20,7 @@
                 Autor: {{ post.save_post.author }}
             </div>
         </div>
+    {% empty %}
+        Todavia no tienes post guardados, recuerda que con el boton  (<span class="glyphicon glyphicon-bookmark"></span>)  podrás guardar posts.
     {% endfor %}
 {% endblock %}

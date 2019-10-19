@@ -7,9 +7,11 @@
             <a class="btn btn-default" href="{% url 'blog:post-edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"><span></a>
         {% else %}
             {% for post_save in saves %}
-                {% if post != post_save.save_pos %}
+                {% if post != post_save.save_post %}
                     <a class="btn btn-default" href="{% url 'blog:post-save' pk=post.pk %}"><span class="glyphicon glyphicon-bookmark"></span></a>
                 {% endif %}
+            {% empty %}
+                <a class="btn btn-default" href="{% url 'blog:post-save' pk=post.pk %}"><span class="glyphicon glyphicon-bookmark"></span></a>
             {% endfor %}
         {% endif %}
         {% if not post.published_date %}
@@ -45,7 +47,7 @@
             </div>
             {% endif %}
         {% empty %}
-            <p>No comments here yet :(</p>
+            <p>Todavía no hay comentarios :(</p>
     {% endfor %}<br>
     {% if user.is_authenticated %}
         <a class="btn btn-default" href="{% url 'blog:add-comment-to-post' pk=post.pk %}">Añadir comentario</a>

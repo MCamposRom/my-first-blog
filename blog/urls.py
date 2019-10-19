@@ -6,7 +6,7 @@ app_name='blog'
 
 urlpatterns = [
     path('', views.post_list, name='post-list'),
-    path('post/<int:pk>/', views.post_detail, name='post-detail'),
+    path('post/<pk>/', views.post_detail, name='post-detail'),
     path('post/new', views.post_new, name='post-new'),
     path('post/<int:pk>/edit/', views.post_edit, name='post-edit'),
     path('drafts/', views.post_draft_list, name='post-draft-list'),
@@ -18,6 +18,7 @@ urlpatterns = [
     path('user', views.user, name='user'),
     path('user/config', views.user_config, name='user-config'),
     path('user/config/eliminate_account', views.user_eliminate, name='user-eliminate'),
-    path('user/save/<pk>', views.post_save, name='post-save'),
+    path('user/save/<pk>/', views.post_save, name='post-save'),
     path('user/save/', views.post_save_list, name='post-save-list'),
+    path('user/save/<pk>/remove', views.save_remove, name='save-remove'),
 ]
