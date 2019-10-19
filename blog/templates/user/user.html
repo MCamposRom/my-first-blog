@@ -10,7 +10,7 @@
     <body>
     <div class="page-header">
         {% if user.is_authenticated %}
-            <a href="{% url 'blog:user' %}" class="top-menu"><span class="glyphicon glyphicon-user"></span></a>
+            <a href="{% url 'blog:user-config' %}" class="top-menu"><span class="glyphicon glyphicon-cog"></span></a>
             <a href="{% url 'blog:post-new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
             <a href="{% url 'blog:post-draft-list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
             <small><p class="top-menu">Hola {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p></small>
@@ -24,6 +24,23 @@
         <div class="row">
             <div class="col-md-8">
             {% block content %}
+                <dev class='user'>
+                    <h1>{{ user.username }}</h1>
+                    <h2> Mis posts </h2>
+                    {% for post in posts %}
+                        {% if user == post.author %}
+                            <div class="post-user">
+                                <div class="date">
+                                    {{ post.published_date }}
+                                </div>
+                                <h1><a href="{% url 'blog:post-detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                                <p>{{ post.text|linebreaksbr }}</p>
+                                <a href="{% url 'blog:post-detail' pk=post.pk %}">Cometarios: {{ post.approved_comments.count }}</a>
+                                <br>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </dev><br><br>
             {% endblock %}
             </div>
         </div>

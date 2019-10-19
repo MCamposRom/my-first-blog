@@ -15,4 +15,7 @@ urlpatterns = [
     path('post/<pk>/comment/', views.add_comment_to_post, name='add-comment-to-post'),
     path('comment/<pk>/remove/', views.comment_remove, name='comment-remove'),
     path('register', views.register, name='register'),
+    path('user', views.user, name='user'),
+    path('user/config', views.user_config, name='user-config'),
+    path('user/config/eliminate_account', views.user_eliminate, name='user-eliminate'),
 ]

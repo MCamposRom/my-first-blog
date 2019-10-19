@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, User
 from django.contrib.auth import login as do_login
 
 # Create your views here.
@@ -95,3 +95,23 @@ def register(request):
                 do_login(request, user)
                 return redirect('/')
     return render(request, "registration/register.html", {'form': form})
+
+def user(request):
+    posts = Post.objects.filter(author=request.user).order_by('-published_date')
+    return render(request, "user/user.html", {'posts': posts})
+
+def user_config(request):
+    return render(request, 'user/user_config.html')
+    
+def user_eliminate(request):
+    me = get_object_or_404(User, username=request.user.username)
+    posts = Post.objects.all()
+    comments = Comment.objects.all()
+    for post in posts:
+        if post.author == request.user.username:
+            post.delete()
+    for com in comments:
+        if com.author == request.user.username:
+            com.delete()
+    me.delete()
+    return redirect('/')
