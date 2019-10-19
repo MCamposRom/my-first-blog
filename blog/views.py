@@ -10,13 +10,18 @@ from django.contrib.auth import login as do_login
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    saves = SavePost.objects.all()
-    return render(request, 'blog/post_list.html', {'posts': posts, 'saves' : saves})
+    return render(request, 'blog/post_list.html', {'posts': posts})
 
 def post_detail(request, pk):
+    saves="no"
     post = get_object_or_404(Post, pk=pk)
-    saves = SavePost.objects.all()
-    return render(request, 'blog/post_detail.html', {'post': post, 'saves' : saves})
+    save_posts = SavePost.objects.all()
+    for save in save_posts:
+        if save.save_user == request.user.username:
+            if save.save_post==post:
+                saves="yes";
+                break;
+    return render(request, 'blog/post_detail.html', {'post': post, 'saves' : saves, 'no':"no"})
 
 @login_required
 def post_new(request):
@@ -50,7 +55,11 @@ def post_edit(request, pk):
 
 @login_required
 def post_draft_list(request):
-    posts = Post.objects.filter(published_date__isnull=True).order_by('-created_date')
+    posts=[]
+    post_list = Post.objects.filter(published_date__isnull=True).order_by('-created_date')
+    for post in post_list:
+        if post.author== request.user.username:
+            posts.append(post)
     return render(request, 'blog/post_draft_list.html', {'posts': posts})
 
 @login_required
@@ -75,8 +84,12 @@ def post_save(request, pk):
 
 @login_required
 def post_save_list(request):
+    saves=[]
     save_posts = SavePost.objects.all()
-    return render(request, 'blog/post_save_list.html', {'posts': save_posts})
+    for save in save_posts:
+        if save.save_user== request.user.username:
+            saves.append(save)
+    return render(request, 'blog/post_save_list.html', {'posts': saves})
 
 @login_required
 def save_remove(request, pk):

@@ -12,5 +12,7 @@
                 <p>{{ post.text|truncatechars:200 }}</p>
             </div>
         {% endif %}
+    {% empty %}
+        Todavia no tienes borradores. Con el boton (<span class="glyphicon glyphicon-plus"></span>) puedes hacerlo facilmente. Recuerde que si lo publica ya no estará en su lista de borradores. 
     {% endfor %}
 {% endblock %}

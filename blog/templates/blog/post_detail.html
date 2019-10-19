@@ -6,13 +6,10 @@
             <a class="btn btn-default" href="{% url 'blog:post-remove' pk=post.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
             <a class="btn btn-default" href="{% url 'blog:post-edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"><span></a>
         {% else %}
-            {% for post_save in saves %}
-                {% if post != post_save.save_post %}
-                    <a class="btn btn-default" href="{% url 'blog:post-save' pk=post.pk %}"><span class="glyphicon glyphicon-bookmark"></span></a>
-                {% endif %}
-            {% empty %}
+            {% if saves == no %}
+                No lo tienes
                 <a class="btn btn-default" href="{% url 'blog:post-save' pk=post.pk %}"><span class="glyphicon glyphicon-bookmark"></span></a>
-            {% endfor %}
+            {% endif %}
         {% endif %}
         {% if not post.published_date %}
             <a class="btn btn-default" href="{% url 'blog:post-publish' pk=post.pk %}">Publicar</a>            
