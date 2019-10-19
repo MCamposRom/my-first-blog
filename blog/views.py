@@ -135,10 +135,10 @@ def register(request):
                 return redirect('/')
     return render(request, "registration/register.html", {'form': form})
 
-@login_required
-def user(request):
-    posts = Post.objects.filter(author=request.user).order_by('-published_date')
-    return render(request, "user/user.html", {'posts': posts})
+def user(request, u):
+    usuario = get_object_or_404(User, username=u)
+    posts = Post.objects.filter(author=usuario).filter(published_date__lte=timezone.now()).order_by('-published_date')
+    return render(request, "user/user.html", {'posts': posts, 'usuario':usuario})
 
 @login_required
 def user_config(request):

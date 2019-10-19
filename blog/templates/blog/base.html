@@ -11,7 +11,7 @@
     <div class="page-header">
         {% if user.is_authenticated %}
             <a href="{% url 'blog:user-config' %}" class="top-menu"><span class="glyphicon glyphicon-cog"></span></a>
-            <a href="{% url 'blog:user' %}" class="top-menu"><span class="glyphicon glyphicon-user"></span></a>
+            <a href="{% url 'blog:user' u=user %}" class="top-menu"><span class="glyphicon glyphicon-user"></span></a>
             <a href="{% url 'blog:post-new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
             <a href="{% url 'blog:post-draft-list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
             <small><p class="top-menu">Hola {{ user.username }}</p></small>

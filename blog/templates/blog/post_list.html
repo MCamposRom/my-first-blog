@@ -11,7 +11,7 @@
                 <a href="{% url 'blog:post-detail' pk=post.pk %}">Cometarios: {{ post.approved_comments.count }}</a>
             <br>
             <div class="post-author">
-                Autor: {{ post.author }}
+                Autor: <a href="{% url 'blog:user' u=post.author %}">{{ post.author }}</a>
             </div>
         </div>
     {% endfor %}
