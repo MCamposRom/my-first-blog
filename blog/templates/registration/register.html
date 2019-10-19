@@ -1,13 +1,15 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-    <h2>Registrarse</h2>
-    <br>
-    <form method="POST">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <button type="submit">Crear cuenta</button>
-        <a href="{% url 'login' %}"><input type="submit" value="Iniciar sesión"></input></a>
-    </form>
-    <hr />
+    <div class='button'>
+        <h2>Registrarse</h2>
+        <br>
+        <form method="POST">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <button type="submit">Crear cuenta</button>
+            <a href="{% url 'login' %}"><input type="submit" value="Iniciar sesión"></input></a>
+        </form>
+        <hr />
+    </div>
 {% endblock %}
