@@ -40,6 +40,9 @@ body {
 .user a{
     color: #000000;
 }
+.save a{
+    float: right;
+}
 .post-user{
     padding-left: 50px;
 }
@@ -109,7 +112,7 @@ h1, h2, h3, h4{
 .post, .post-detail{
     margin-bottom:70px;
 }
-.post h1 a, .post h1 a:visited, .post-detail h1 a, .post-detail, hi a:visited {
+.post h1 , .post a, .post h1 a:visited, .post-detail h1 a, .post-detail, hi a:visited {
     color: #000000;
 }
 .post-detail a{

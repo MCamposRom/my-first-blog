@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="page-title">
+        <h2>Post guardados</h2>
+    </div>
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.save_post.published_date }}
+            </div>
+            <h1><a href="{% url 'blog:post-detail' pk=post.save_post.pk %}">{{ post.save_post.title }}</a></h1>
+            <p>{{ post.save_post.text|linebreaksbr }}</p>
+            <a href="{% url 'blog:post-detail' pk=post.save_post.pk %}">Cometarios: {{ post.save_post.approved_comments.count }}</a>
+            <br>
+            <div class="post-author">
+                Autor: {{ post.save_post.author }}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -33,3 +33,10 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
+
+class SavePost(models.Model):
+    save_post = models.ForeignKey('blog.Post', on_delete=models.CASCADE)
+    save_user = models.CharField(max_length=200)
+    
+    def __str__(self):
+        return self.save_post.title

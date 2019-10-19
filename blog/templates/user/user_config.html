@@ -4,7 +4,9 @@
     <dev class='user-config'>
         <h1>{{ user.username }}</h1>
         <h2> Configuración </h2>
-        <h3> Eliminar cuenta o usuario </h3>
+        <h3> Salir de la cuenta </h3>
+        <a class="btn btn-default" href="{% url 'logout' %}">Cerrar Sesión</a>
+        <h3> Eliminar cuenta </h3>
         <p> Tenga en cuenta que si <strong>elimina su cuenta</strong> sus posts y comentarios se elimininarán también.</p>
         <a class="btn btn-default" href="{% url 'blog:user-eliminate' %}">Eliminar cuenta</a>
     </dev>

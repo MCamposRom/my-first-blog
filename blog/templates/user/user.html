@@ -1,53 +1,28 @@
-{% load staticfiles %}
-<html>
-    <head>
-        <title>El blog de Monica</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-    </head>
-    <body>
-    <div class="page-header">
-        {% if user.is_authenticated %}
-            <a href="{% url 'blog:user-config' %}" class="top-menu"><span class="glyphicon glyphicon-cog"></span></a>
-            <a href="{% url 'blog:post-new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-            <a href="{% url 'blog:post-draft-list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
-            <small><p class="top-menu">Hola {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p></small>
-        {% else %}
-            <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
-            <p class="top-menu"> <small><small><a href="{% url 'login' %}"> Log in </a></small></small></p>
-        {% endif %}
-        <h1><a href="/">El blog de Monica</a></h1>
-    </div>
-    <div class="content container">
-        <div class="row">
-            <div class="col-md-8">
-            {% block content %}
-                <dev class='user'>
-                    <h1>{{ user.username }}</h1>
-                    <h2> Mis posts </h2>
-                    {% for post in posts %}
-                        {% if user == post.author %}
-                            <div class="post-user">
-                                <div class="date">
-                                    {% if post.published_date == none %}
-                                        <p>Borrador</p>
-                                    {% else %}
-                                        {{ post.published_date }}
-                                    {% endif %}
-                                </div>
-                                <h3><a href="{% url 'blog:post-detail' pk=post.pk %}">{{post.title}}</a></h3>
-                                <p>{{ post.text|linebreaksbr }}</p>
-                                <h5><a href="{% url 'blog:post-detail' pk=post.pk %}">Cometarios: {{ post.approved_comments.count }}</a></h5>
-                                <br>
-                            </div>
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <dev class='user'>
+        <h1>Perfil {{ user.username }}</h1>
+        <dev class='save' >
+            <a class="btn btn-default" href="{% url 'blog:post-save-list' %}">Ver posts guardados <span class="glyphicon glyphicon-bookmark"></span></a>
+        </dev><br>
+        <h2> Mis posts </h2>
+        {% for post in posts %}
+            {% if user == post.author %}
+                <div class="post-user">
+                    <div class="date">
+                        {% if post.published_date == none %}
+                            <p>Borrador</p>
+                        {% else %}
+                            {{ post.published_date }}
                         {% endif %}
-                    {% endfor %}
-                </dev><br><br>
-            {% endblock %}
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+                    </div>
+                    <h3><a href="{% url 'blog:post-detail' pk=post.pk %}">{{post.title}}</a></h3>
+                    <p>{{ post.text|linebreaksbr }}</p>
+                    <h5><a href="{% url 'blog:post-detail' pk=post.pk %}">Cometarios: {{ post.approved_comments.count }}</a></h5>
+                    <br>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </dev><br><br>
+{% endblock %}

@@ -18,4 +18,6 @@ urlpatterns = [
     path('user', views.user, name='user'),
     path('user/config', views.user_config, name='user-config'),
     path('user/config/eliminate_account', views.user_eliminate, name='user-eliminate'),
+    path('user/save/<pk>', views.post_save, name='post-save'),
+    path('user/save/', views.post_save_list, name='post-save-list'),
 ]

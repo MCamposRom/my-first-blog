@@ -1,6 +1,6 @@
 from django.utils import timezone
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Post, Comment
+from .models import Post, Comment, SavePost
 from .forms import PostForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, User
@@ -44,6 +44,7 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
 
+@login_required
 def post_draft_list(request):
     posts = Post.objects.filter(published_date__isnull=True).order_by('-created_date')
     return render(request, 'blog/post_draft_list.html', {'posts': posts})
@@ -59,6 +60,18 @@ def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect('blog:post-list')
+
+@login_required
+def post_save(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.save = SavePost.objects.create(save_post=post, save_user=request.user.username)
+    saves = SavePost.objects.all()
+    return render(request, 'blog/post_detail.html', {'post': post}, {'saves':saves})
+
+@login_required
+def post_save_list(request):
+    save_posts = SavePost.objects.all()
+    return render(request, 'blog/post_save_list.html', {'posts': save_posts})
 
 @login_required
 def add_comment_to_post(request, pk):
@@ -96,13 +109,16 @@ def register(request):
                 return redirect('/')
     return render(request, "registration/register.html", {'form': form})
 
+@login_required
 def user(request):
     posts = Post.objects.filter(author=request.user).order_by('-published_date')
     return render(request, "user/user.html", {'posts': posts})
 
+@login_required
 def user_config(request):
     return render(request, 'user/user_config.html')
-    
+
+@login_required    
 def user_eliminate(request):
     me = get_object_or_404(User, username=request.user.username)
     posts = Post.objects.all()
