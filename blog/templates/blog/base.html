@@ -15,11 +15,7 @@
             <a href="{% url 'blog:post-new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
             <a href="{% url 'blog:post-draft-list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
             <small><a class="top-menu" href="{% url 'blog:user' u=user %}">{{ user.username }}</a></small>
-<<<<<<< HEAD
-            <small><p class="top-menu">Hola </p></small>
-=======
             <small><p class="top-menu">Hola</p></small>
->>>>>>> 8bde8beab19d6a4173a64e26d46bc6d62cc87cdf
         {% else %}
             <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
             <p class="top-menu"> <small><small><a href="{% url 'login' %}"> Log in </a></small></small></p>
