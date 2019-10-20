@@ -1,13 +1,15 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    <dev class='user'>
+    <div class='user'>
         <h1>Perfil {{ usuario.username }}</h1>
         {% if usuario == user %}
-            Recuerde que solo usted puede ver sus post borradores.
-            <dev class='save' >
+            <div class="comentario">
+                Recuerde que solo usted puede ver sus post borradores.
+            </div>
+            <div class='save' >
                 <a class="btn btn-default" href="{% url 'blog:post-save-list' %}">Ver posts guardados <span class="glyphicon glyphicon-bookmark"></span></a>
-            </dev><br>
+            </div><br>
         {% endif %}
         <h2>Posts</h2>
         {% for post in posts %}
@@ -25,11 +27,13 @@
                 <br>
             </div>
         {% empty %}
-            {% if usuario == user %}
-                Todavia no tienes post creados. Recuerda que con el boton (<span class="glyphicon glyphicon-plus"></span>) puedes hacerlo facilmente. No olvide publicarlos ;)
-            {% else %}
-                Este usuario todavía no tiene posts :(
-            {% endif %}
+            <div class="comentario">
+                {% if usuario == user %}
+                    Todavia no tienes post creados. Recuerda que con el boton (<span class="glyphicon glyphicon-plus"></span>) puedes hacerlo facilmente. No olvide publicarlos ;)
+                {% else %}
+                    Este usuario todavía no tiene posts :(
+                {% endif %}
+            </div>
         {% endfor %}
-    </dev><br><br>
+    </div><br><br>
 {% endblock %}

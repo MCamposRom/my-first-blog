@@ -3,7 +3,9 @@
 {% block content %}
     <div class="page-title">
         <h2>Borradores</h2>
-        Recuerde que solo usted puede ver sus post borradores.
+        <div class="comentario">
+            Recuerde que solo usted puede ver sus post borradores.
+        </div>
     </div>
     {% for post in posts %}
         {% if user == post.author %}
@@ -14,6 +16,8 @@
             </div>
         {% endif %}
     {% empty %}
-        Todavia no tienes borradores. Con el boton (<span class="glyphicon glyphicon-plus"></span>) puedes hacerlo facilmente. Recuerde que si lo publica ya no estará en su lista de borradores. 
+        <div class="comentario">
+            Todavia no tienes borradores. Con el boton (<span class="glyphicon glyphicon-plus"></span>) puedes hacerlo facilmente. Recuerde que si lo publica ya no estará en su lista de borradores.
+        </div>
     {% endfor %}
 {% endblock %}

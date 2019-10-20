@@ -14,7 +14,7 @@
             <a href="{% url 'blog:user' u=user %}" class="top-menu"><span class="glyphicon glyphicon-user"></span></a>
             <a href="{% url 'blog:post-new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
             <a href="{% url 'blog:post-draft-list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
-            <small><p class="top-menu">Hola {{ user.username }}</p></small>
+            <small><p class="top-menu">Hola <a href="{% url 'blog:user' u=user %}">{{ user.username }}</p></small>
         {% else %}
             <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
             <p class="top-menu"> <small><small><a href="{% url 'login' %}"> Log in </a></small></small></p>

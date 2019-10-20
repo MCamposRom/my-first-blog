@@ -14,5 +14,9 @@
                 Autor: <a href="{% url 'blog:user' u=post.author %}">{{ post.author }}</a>
             </div>
         </div>
+    {% empty %}
+        <div class="comentario">
+            Todavia no hay publicados, no dude en ser el primero en hacerlo. Registrese y si ya lo ha hecho recuerde que con el boton (<span class="glyphicon glyphicon-plus"></span>) puede crear un post y publicarlo.
+        </div>
     {% endfor %}
 {% endblock content %}
