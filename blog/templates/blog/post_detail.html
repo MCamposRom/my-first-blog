@@ -32,7 +32,7 @@
         {% for comment in post.comments.all %}
             {% if user.is_authenticated or comment.approved_comment %}
             <div class="comment">
-                <strong><a href="{% url 'blog:user' u=comment.author %}">{{ comment.author }}</strong><br>
+                <strong><a href="{% url 'blog:user' u=comment.author %}">{{ comment.author }}</strong></a><br>
                 <div class="comment-date">
                     {{ comment.created_date }}
                 </div>
